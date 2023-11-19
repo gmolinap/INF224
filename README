@@ -1,8 +1,1 @@
-Escriba la declaración ( archivo .h de encabezado ) y la implementación ( archivo .cpp fuente ) de la clase base del árbol de herencia de clases de objetos multimedia. 
-
-multimedia.cpp
-multimedia.herencia
-
-
-
-Esta clase base contendrá lo que es común a todos los objetos multimedia. Luego lo usaremos para definir subclases específicas para cada tipo de datos (por ejemplo, una foto, un video, una película, una clase de pieza musical, etc.)
+Gabriel Mauricio Molina Perez INF224
