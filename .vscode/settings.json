@@ -44,7 +44,10 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "list": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "map": "cpp",
+        "sstream": "cpp",
+        "xtree": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

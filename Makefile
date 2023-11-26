@@ -2,7 +2,7 @@
 PROG = main
 
 # Source files (add more if needed)
-SOURCES = main.cpp MultimediaManager.cpp Video.cpp Film.cpp Photo.cpp Group.cpp Multimedia.cpp
+SOURCES = main.cpp MultimediaManager.cpp Video.cpp Film.cpp Photo.cpp Group.cpp Multimedia.cpp ccsocket.cpp tcpserver.cpp protocolCom.cpp
 
 # Object files
 OBJ = $(SOURCES:.cpp=.o)
@@ -17,7 +17,7 @@ CXXFLAGS = -std=c++14 -Wall -g
 LDFLAGS =
 
 # Libraries
-LDLIBS =
+LDLIBS = -lws2_32
 
 # Targets
 all: $(PROG)
