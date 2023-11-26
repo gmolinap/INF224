@@ -4,41 +4,36 @@
 #include <ostream>
 #include <vector>
 #include <string>
+#include <memory> // Incluir la cabecera para std::shared_ptr
 #include "Video.h"
 
-
-class Film : public Video{
+class Film : public Video {
 private:
-//here we use a nullpointr, it's not going to point to any direction of memory
-    int* chapterDuration{};
-    int numChapter; 
+    std::shared_ptr<int[]> chapterDuration; // Usar std::shared_ptr para la matriz
+    int numChapter;
+
 public:
     ~Film();
     Film(const std::string& name, const std::string& path, const int dur, int* chapter, int num);
 
     // getters
-    const int* get_chapterDurations() const;
+    const std::shared_ptr<int[]>& get_chapterDurations() const;
     int get_numChapter() const;
-    // setters 
+    // setters
     void setChapter(const int* chapters, int num);
 
-    //Visualization 
-    //Remember that every method that inheretes from the superclass needs to be with virtual
-    virtual void Visualization(std::ostream& out) const;
+    // Visualization
+    virtual void Visualization(std::ostream& out) const override;
 
     // Play function implemented
     virtual void play() const override {
-        // Play function 
         std::cout << "Playing the film..." << std::endl;
     }
 
-    //7e étape. Destruction et copie des objets
-    // we must create the Film copy structure
-    Film (const Film& other);
-    // and the operator affectation
+    // Copy constructor
+    Film(const Film& other);
+    // Assignment operator
     Film& operator=(const Film& other);
-
-
 };
 
 #endif

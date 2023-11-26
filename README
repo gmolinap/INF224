@@ -1,8 +1,18 @@
-Escriba la declaración ( archivo .h de encabezado ) y la implementación ( archivo .cpp fuente ) de la clase base del árbol de herencia de clases de objetos multimedia. 
 
-multimedia.cpp
-multimedia.herencia
+# Multimedia Manager
 
 
 
-Esta clase base contendrá lo que es común a todos los objetos multimedia. Luego lo usaremos para definir subclases específicas para cada tipo de datos (por ejemplo, una foto, un video, una película, una clase de pieza musical, etc.)
+1. **Question 10:** How do we restrict object creation?
+    - **Answer:** By providing factory methods in the manager class and making constructors private.
+
+12. **Question 11:** How can we integrate Doxygen documentation into the project?
+    - **Answer:** Doxygen comments have been added to the code for generating documentation.
+
+
+¿Cómo podemos prohibirlo, de modo que sólo la clase utilizada para manipular objetos pueda crear otros nuevos?
+    ChatGPT Quant à empêcher la création directe d'objets en dehors de la classe servant à manipuler ces objets (MultimediaManager dans ce cas), vous pouvez rendre les constructeurs des classes associées (Photo, Video, Film, Group) privés et déclarer la classe MultimediaManager comme une amie. De cette manière, seule la classe MultimediaManager aura accès aux constructeurs, et les autres classes ne pourront pas être instanciées directement.
+
+## Building and Running
+
+

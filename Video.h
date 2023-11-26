@@ -4,32 +4,28 @@
 #include "Multimedia.h"
 #include <iostream>
 #include <string>
+#include <memory> // Incluir la cabecera para std::shared_ptr
 
-class Video: public Multimedia{
+class Video: public Multimedia {
 private:
-    // We define the atributes
     int duration;
+
 public:
-    Video(); //constructor sin parametros
-    ~Video(); //destructeur 
-    // Video(const int& dur ); // constructor con parametros
-    //Constructor con parametros tipo Java
-    Video(const std::string& name, const std::string& path, const int  dur);
+    Video(); // Constructor sin parámetros
+    ~Video(); // Destructor
+    Video(const std::string& name, const std::string& path, const int  dur); // Constructor con parámetros
 
-
-    //Getter
+    // Getter
     int get_duration() const;
 
-    //Setter
+    // Setter
     void set_duration(int dur);
 
-    //Visualization
+    // Visualización
     virtual void Visualization(std::ostream& out) const override;
 
-    //Define the function play()
+    // Utilizamos std::shared_ptr para play()
     virtual void play() const override;
-
 };
-
 
 #endif

@@ -3,30 +3,27 @@
 
 #include <list>
 #include <iostream>
+#include <memory>  // Add this line
+#include "Multimedia.h"  // Add this line
 
-// Group class template inheriting from std::list
-template <class T>
-class Group : public std::list<T*> {
+// Forward declaration of Multimedia class
+class Multimedia;
+
+// Define smart pointer for the Multimedia class
+typedef std::shared_ptr<Multimedia> MultimediaPtr;
+
+class Group : public std::list<MultimediaPtr> {
 private:
-    std::string groupName; // Group name
+    std::string groupName;
 
 public:
-    // Constructor
-    Group(const std::string& name) : groupName(name) {}
+    Group(const std::string& name);
+    ~Group();
 
-    // Accessor for group name
-    std::string getGroupName() const {
-        return groupName;
-    }
-
-    // Display method to show attributes of all objects in the group
-    void displayGroup() const {
-        std::cout << "Group Name: " << groupName << std::endl;
-        for (const auto& objPtr : *this) {
-            objPtr->Visualization(std::cout);
-            std::cout << "--------------------------" << std::endl;
-        }
-    }
+    void addObject(MultimediaPtr obj);
+    void removeObject(MultimediaPtr obj);
+    const std::string& getGroupName() const;
+    void displayGroup() const;
 };
 
-#endif // GROUP_H
+#endif

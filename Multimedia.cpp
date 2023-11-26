@@ -1,11 +1,13 @@
 #include "Multimedia.h"
 
-Multimedia::Multimedia() {}
+Multimedia::Multimedia() : nameFile(""), pathName("") {}
 
 Multimedia::Multimedia(const std::string& name, const std::string& path)
     : nameFile(name), pathName(path) {}
 
-Multimedia::~Multimedia() {}
+Multimedia::~Multimedia() {
+    // No es necesario hacer nada especial aquí si usamos punteros inteligentes.
+}
 
 std::string Multimedia::getNameFile() const {
     return nameFile;
@@ -24,6 +26,5 @@ void Multimedia::setPathName(const std::string& path) {
 }
 
 void Multimedia::Visualization(std::ostream& out) const {
-    out << "File name: " << nameFile << std::endl;
-    out << "File path: " << pathName << std::endl;
+    out << "Name: " << nameFile << "\nPath: " << pathName << std::endl;
 }

@@ -1,58 +1,55 @@
 #include "Film.h"
 
-
-
-
 Film::Film(const std::string& name, const std::string& path, int dur, int* chapter, int num)
     : Video(name, path, dur), chapterDuration(nullptr), numChapter(0) {
     setChapter(chapter, num);
 }
 
-void Film::setChapter(const int* chapter, int num){
-    //empty the memory if necessary
-    delete[] chapterDuration;
+void Film::setChapter(const int* chapter, int num) {
+    // Use smart pointers to manage dynamic memory
+    chapterDuration = std::make_unique<int[]>(num);
 
-    //allocate in memory
-    chapterDuration = new int[num];
-
-    //loop in chapter duration and adding to array 
-    for (int i=0; i < num; i++){
+    // Loop to copy chapter duration values
+    for (int i = 0; i < num; i++) {
         chapterDuration[i] = chapter[i];
     }
 
-    //assigning chapter number
-
+    // Assigning chapter number
     numChapter = num;
 }
 
-const int* Film::get_chapterDurations() const{
+const std::shared_ptr<int[]>& Film::get_chapterDurations() const {
     return chapterDuration;
 }
 
-int Film::get_numChapter() const{
+
+int Film::get_numChapter() const {
     return numChapter;
 }
 
-Film::~Film(){
-    delete[] chapterDuration;
+Film::~Film() {
+    // Unique_ptr automatically manages the memory, so no need to delete[]
 }
 
-//Copy constructor
+// Copy constructor
+Film::Film(const Film& other) : Video(other), numChapter(other.numChapter) {
+    // Use smart pointers to manage dynamic memory
+    chapterDuration = std::make_unique<int[]>(numChapter);
 
-Film::Film(const Film& other) : Video(other), numChapter(other.numChapter){
-    chapterDuration = new int[numChapter];
+    // Loop to copy chapter duration values
     for (int i = 0; i < numChapter; i++) {
         chapterDuration[i] = other.chapterDuration[i];
     }
 }
 
-// Sobrecarga del operador de asignación
+// Assignment operator
 Film& Film::operator=(const Film& other) {
-    if (this != &other) { // protección contra auto-asignación
-        delete[] chapterDuration; // libera la memoria actual
-
+    if (this != &other) {
+        // Smart pointers manage memory, so no need to delete[]
         numChapter = other.numChapter;
-        chapterDuration = new int[numChapter];
+        chapterDuration = std::make_unique<int[]>(numChapter);
+
+        // Loop to copy chapter duration values
         for (int i = 0; i < numChapter; i++) {
             chapterDuration[i] = other.chapterDuration[i];
         }
@@ -60,13 +57,9 @@ Film& Film::operator=(const Film& other) {
     return *this;
 }
 
-
-
-
-void Film::Visualization(std::ostream& out) const{
-        out << "Chapter Durations:" << std::endl;
-        for (int i = 0; i < numChapter; i++) {
-            out << "Chapter " << i + 1 << ": " << chapterDuration[i] << " minutes" << std::endl;
-        }
+void Film::Visualization(std::ostream& out) const {
+    out << "Chapter Durations:" << std::endl;
+    for (int i = 0; i < numChapter; i++) {
+        out << "Chapter " << i + 1 << ": " << chapterDuration[i] << " minutes" << std::endl;
+    }
 }
-
