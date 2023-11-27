@@ -1,0 +1,24 @@
+
+# MOLINA__Gabriel
+
+**Question 10:** Property of the object-oriented programming paradigm that allows objects to be treated in a uniform manner
+    - **Answer:** Polymorphism.
+
+**Question 10:**Modification of code to support polymorphism
+    - **Answer:** Using pointers or references to the base class instead of direct instances.
+
+**Question 10:** How do we restrict object creation?
+    - **Answer:** By providing factory methods in the manager class and making constructors private.
+
+**Question 11:** How can we integrate Doxygen documentation into the project?
+    - **Answer:** Doxygen comments have been added to the code for generating documentation.
+
+    **Question 11:** How can we prohibit it, so that only the class used to manipulate objects can create new ones?
+  
+    - **Answer:** To prevent the direct creation of objects outside the class used to manipulate them (MultimediaManager in this case), you can make the constructors of the associated classes (Photo, Video, Film, Group) private and declare the MultimediaManager class a friend. In this way, only the MultimediaManager class will have access to the constructors, and the other classes cannot be instantiated directly.
+
+
+
+## Building and Running
+
+
